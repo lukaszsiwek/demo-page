@@ -1,0 +1,54 @@
+@font-face
+  font-family: 'icons'
+  src: url('shared/fonts/icons.woff2') format('woff2'), url('shared/fonts/icons.woff') format('woff')
+  font-weight: normal
+  font-style: normal
+
+=icon-settings
+  display: block
+  font:
+    family: 'icons'
+    size: $icon-size
+    style: normal
+    variant: normal
+    weight: normal
+  line-height: 1
+  speak: none
+  text-transform: none
+  -webkit-font-smoothing: antialiased
+  vertical-align: middle
+
+=icon($name, $content)
+  .#{$icon-class}#{$name},
+  %#{$icon-class}#{$name}
+    &:before
+      content: #{"\"\\"}#{$content + "\""}
+
+[class*=#{$icon-class}]
+  display: inline-block
+  height: $m
+
+  &:active,
+  &:hover,
+  &:focus
+    text-decoration: none
+
+  &:before
+    +icon-settings
+
+  + *,
+  * + &
+    margin-left: $m-sm
+
+  &:hover
+    color: $color-yellow
+    cursor: pointer
+
++icon(bag, 'eb21')
++icon(search, 'eb36')
++icon(user, 'eb0e')
+
+.icon--bag:before
+  font-size: 24px
+  top: -3px
+  position: relative

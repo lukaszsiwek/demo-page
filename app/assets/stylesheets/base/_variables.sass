@@ -1,0 +1,64 @@
+//----- base -----------------------------------------------------------------------------------------------------------
+$font-size-xxl:                   80px
+$font-size-xl:                    24px
+$font-size-lg:                    20px
+$font-size-base:                  16px
+$font-size-sm:                    14px
+$font-size-xs:                    12px
+$font-size-xs-mobile:             11px
+
+$line-height-base:                1.25
+$line-height-lg:                  1.5
+$line-height-sm:                  1
+
+$m:                               $font-size-base * $line-height-base
+$m-lg:                            $m * 2
+$m-sm:                            floor($m / 2)
+$m-xs:                            floor($m / 4)
+
+$border-radius-lg:                50%
+$border-radius:                   $m / 4
+$border-radius-sm:                $m / 8
+
+//----- breakpoints ----------------------------------------------------------------------------------------------------
+$grid-breakpoints:                (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px)
+
+$grid-columns:                    12
+$grid-gutter-width:               $m-sm
+
+$container:                       map-get($grid-breakpoints, xl)
+
+//----- colors ---------------------------------------------------------------------------------------------------------
+$brand-primary:                   #d1e4f3
+$brand-secondary:                 #ecedf1
+
+$color-black:                     #36373b
+$color-gray:                      rgba(189, 192, 189, .25)
+$color-yellow:                    #ecd17e
+$color-white:                     #ffffff
+
+//----- fonts ----------------------------------------------------------------------------------------------------------
+$font-family-base:                'Rubik', sans-serif
+$font-family-light:               'Rubik-light', sans-serif
+$font-family-medium:              'Rubik-medium', sans-serif
+
+$font-weight-regular:             400
+$font-weight-bold:                600
+$font-weight-black:               700
+
+$icon-class:                      'icon--'
+$icon-size:                       16px
+
+//----- transitions ----------------------------------------------------------------------------------------------------
+$transition-duration:             .3s
+$transition-function:              ease-in-out
+
+//----- z-indexes ------------------------------------------------------------------------------------------------------
+$z-negative:                      -1
+$z-low:                           100
+$z-middle:                        200
+$z-high:                          300
+$z-higher:                        400
+
+//----- custom-values ------------------------------------------------------------------------------------------------------
+$header-height: 15 * $m-xs

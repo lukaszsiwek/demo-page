@@ -1,0 +1,221 @@
+@keyframes play
+  from
+    background-position: 0
+  to
+    background-position: -11584px
+
+*
+  box-sizing: border-box
+  text-decoration: none
+
+body
+  font-family: $font-family-base
+  color: $color-black
+
+.hero
+  +container-fluid
+  display: flex
+  flex-direction: column
+  min-height: 100vh
+
+  &__header
+    align-items: center
+    border-bottom: 1px solid $color-gray
+    display: flex
+    height: $header-height
+    left: 0
+    position: absolute
+    top: 0
+    white-space: nowrap
+    width: 100%
+    z-index: $z-low
+
+  &__content
+    +row
+    display: flex
+    flex: 1
+
+  &__left, &__right
+    flex: 1
+    padding-top: $header-height
+
+  &__left
+    +column(6)
+    align-items: center
+    background-color: $brand-secondary
+    display: flex
+    justify-content: center
+
+  &__right
+    +column(6)
+    align-items: center
+    background-color: $brand-primary
+    display: flex
+
+  &__image
+    align-items: center
+    display: flex
+    height: 489px
+    left: -25%
+    min-width: 724px
+    position: relative
+
+    .hero__furniture-image
+      background-image: url("../../assets/images/sprite.jpg")
+      height: 100%
+      width: 100%
+
+  &__subtitle
+    font:
+      family: $font-family-light
+      size: $font-size-sm
+    left: 0
+    letter-spacing: 3px
+    margin-top: $header-height
+    position: absolute
+    text:
+      align: center
+      transform: uppercase
+    top: 8%
+    width: 100%
+    z-index: $z-low
+
+    .hero__border
+      border-top: 1px solid #000
+      margin: 0 auto
+      padding-bottom: 3 * $m-xs
+      width: 3 * $m
+
+.header
+  &__left, &__right, &__navigation
+    flex: 1
+
+  &__navigation
+    display: flex
+    justify-content: center
+
+    a
+      color: $color-black
+      font-size: $font-size-xs
+      margin: 0 (6 * $m-xs)
+
+      &:hover
+        color: $color-yellow
+
+  &__menu-container
+    align:
+      items: center
+      self: stretch
+    border-right: 1px solid $color-gray
+    display: flex
+
+  &__logo
+    align-self: center
+    margin-left: (6 * $m-xs)
+
+  &__right
+    align:
+      items: center
+      self: stretch
+    display: flex
+    justify-content: flex-end
+
+  &__left
+    align-self: stretch
+    display: flex
+
+    .header__menu
+      cursor: pointer
+      height: 3 * $m-xs
+      margin: 0 (6 * $m-xs)
+      position: relative
+      transition: all $transition-duration $transition-function
+      width: 5 * $m-xs
+
+      &:hover
+        span
+          background-color: $color-yellow
+
+          &:first-child
+            margin-right: 50%
+
+          &:last-child
+            margin-left: 50%
+
+      span
+        background-color: $color-black
+        border-radius: 3px
+        display: block
+        height: 2px
+        opacity: 1
+        position: absolute
+        transform: rotate(0deg)
+        transition: $transition-duration $transition-function
+        width: 100%
+
+        &:nth-child(1)
+          right: 0
+          top: 0
+          width: 50%
+
+        &:nth-child(2),
+        &:nth-child(3)
+          top: 6px
+
+        &:nth-child(4)
+          top: 12px
+          width: 50%
+
+  &__icon
+    align-items: center
+    cursor: pointer
+    display: flex
+
+  &__text
+    font-size: $font-size-xs
+    padding-left: 2 * $m-xs
+
+  &__search, &__user, &__bag
+    align:
+      items: center
+      self: stretch
+    border-left: 1px solid $color-gray
+    display: flex
+    padding: 0 (6 * $m-xs)
+
+.item
+  &__name
+    font:
+      family: $font-family-medium
+      size: $font-size-xxl
+      weight: $font-weight-black
+    letter-spacing: $font-size-xs
+    text-transform: uppercase
+
+  &__info
+    padding: 0 (30 * $m-xs)
+
+  &__actions
+    display: flex
+
+.degree
+  align-items: center
+  background-color: transparent
+  border: (2 * $m-xs) solid $color-yellow
+  border-radius: 50%
+  cursor: pointer
+  display: flex
+  font-size: $font-size-sm
+  font-weight: $font-weight-bold
+  height: 13 * $m-xs
+  justify-content: center
+  position: absolute
+  right: 2 * $m-xs
+  width: 13 * $m-xs
+
+  &:after
+    content: '\00b0'
+
+  &:hover
+    + .hero__furniture-image
+      animation: play 1.5s steps(16) infinite

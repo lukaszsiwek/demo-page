@@ -1,16 +1,83 @@
 <!doctype html>
-<html lang="en">
+<html>
   <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>stile - demo page</title>
     <link rel="stylesheet" href="../../assets/stylesheets/application.css">
   </head>
   <body>
-    <div class="welcome">
-      <header class="welcome__header">
+    <div class="hero">
+      <header class="hero__header">
+        <div class="header__left">
+          <div class="header__menu-container">
+            <div class="header__menu">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+          <div class="header__logo">
+              stile
+          </div>
+        </div>
+        <nav class="header__navigation">
+            <a href="#">Collection</a>
+            <a href="#">Catalog</a>
+            <a href="#">About Us</a>
+            <a href="#">Blog</a>
+        </nav>
+        <div class="header__right">
+          <div class="header__search">
+            <div class="header__icon icon--search">
+            </div>
+          </div>
+          <div class="header__user">
+            <div class="header__icon icon--user">
+              <span class="header__text">My Account</span>
+            </div>
+          </div>
+          <div class="header__bag">
+            <div class="header__icon icon--bag">
+              <span class="header__text">Cart</span>
+            </div>
+          </div>
+        </div>
       </header>
-      <section class="welcome__content">
-        Demo text
+      <div class="hero__subtitle">
+        <div class="hero__border"></div>
+        New arivals
+      </div>
+      <section class="hero__content">
+        <div class="hero__left">
+          <div class="item__info">
+            <div class="item__name">
+                Calin
+            </div>
+            <div>
+              by Pascal Murgue
+            </div>
+            <div class="item__price">
+              $14,99
+            </div>
+            <div class="item__actions">
+              <div class="button__white">
+                <a href="#">discover</a>
+              </div>
+              <div class="button__black">
+                <a href="#">add to cart</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="hero__right">
+          <div class="hero__image">
+            <span class="degree">360</span>
+            <div class="hero__furniture-image">
+            </div>
+          </div>
+        </div>
       </section>
     </div>
   </body>
