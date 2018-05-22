@@ -12,20 +12,24 @@ body
   font-family: $font-family-base
   color: $color-black
 
+.hidden
+  display: none
+
 .hero
   +container-fluid
   display: flex
-  flex-direction: column
   min-height: 100vh
+  overflow: hidden
 
   &__header
     align-items: center
     border-bottom: 1px solid $color-gray
     display: flex
     height: $header-height
-    left: 0
     position: absolute
+    right: 0
     top: 0
+    transition: width .5s ease-in-out
     white-space: nowrap
     width: 100%
     z-index: $z-low
@@ -86,6 +90,13 @@ body
       padding-bottom: 3 * $m-xs
       width: 3 * $m
 
+  &__navbar-left
+    min-height: 100vh
+    padding-top: $header-height
+    transform: translateX(-280px)
+    transition: transform .5s ease-in-out, width .5s ease-in-out
+    width: 0
+
 .header
   &__left, &__right, &__navigation
     flex: 1
@@ -102,13 +113,6 @@ body
       &:hover
         color: $color-yellow
 
-  &__menu-container
-    align:
-      items: center
-      self: stretch
-    border-right: 1px solid $color-gray
-    display: flex
-
   &__logo
     align-self: center
     margin-left: (6 * $m-xs)
@@ -123,48 +127,6 @@ body
   &__left
     align-self: stretch
     display: flex
-
-    .header__menu
-      cursor: pointer
-      height: 3 * $m-xs
-      margin: 0 (6 * $m-xs)
-      position: relative
-      transition: all $transition-duration $transition-function
-      width: 5 * $m-xs
-
-      &:hover
-        span
-          background-color: $color-yellow
-
-          &:first-child
-            margin-right: 50%
-
-          &:last-child
-            margin-left: 50%
-
-      span
-        background-color: $color-black
-        border-radius: 3px
-        display: block
-        height: 2px
-        opacity: 1
-        position: absolute
-        transform: rotate(0deg)
-        transition: $transition-duration $transition-function
-        width: 100%
-
-        &:nth-child(1)
-          right: 0
-          top: 0
-          width: 50%
-
-        &:nth-child(2),
-        &:nth-child(3)
-          top: 6px
-
-        &:nth-child(4)
-          top: 12px
-          width: 50%
 
   &__icon
     align-items: center
@@ -219,3 +181,60 @@ body
   &:hover
     + .hero__furniture-image
       animation: play 1.5s steps(16) infinite
+
+.header__menu
+  cursor: pointer
+  height: 3 * $m-xs
+  margin: 0 (6 * $m-xs)
+  position: relative
+  transition: all $transition-duration $transition-function
+  width: 5 * $m-xs
+
+  &:hover
+    span
+      background-color: $color-yellow
+
+      &:first-child
+        margin-right: 50%
+
+      &:last-child
+        margin-left: 50%
+
+  span
+    background-color: $color-black
+    border-radius: 3px
+    display: block
+    height: 2px
+    opacity: 1
+    position: absolute
+    transform: rotate(0deg)
+    transition: $transition-duration $transition-function
+    width: 100%
+
+    &:nth-child(1)
+      right: 0
+      top: 0
+      width: 50%
+
+    &:nth-child(2),
+    &:nth-child(3)
+      top: 6px
+
+    &:nth-child(4)
+      top: 12px
+      width: 50%
+
+  &-container
+    align:
+      items: center
+      self: stretch
+    border-right: 1px solid $color-gray
+    display: flex
+
+#navbar-menu:checked ~
+  .hero__navbar-left
+    transform: translateX(0)
+    width: 280px
+
+  .hero__header
+    width: calc(100% - 280px)
