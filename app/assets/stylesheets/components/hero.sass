@@ -145,6 +145,7 @@ body
     display: flex
     padding: 0 (6 * $m-xs)
 
+
 .item
   &__name
     font:
@@ -163,7 +164,7 @@ body
 .degree
   align-items: center
   background-color: transparent
-  border: (2 * $m-xs) solid $color-yellow
+  border: (2 * $m-xs) solid $color-yellow-light
   border-radius: 50%
   cursor: pointer
   display: flex
@@ -238,3 +239,93 @@ body
 
   .hero__header
     width: calc(100% - 280px)
+
+.inputbox
+  height: $size
+  position: relative
+
+  &:hover
+    color: $color-yellow
+
+    .header__search-delete
+      color: $color-yellow
+
+  input
+    background: none
+    border:
+      radius: 100%
+      width: 0
+    box-shadow: 0 0 0 $stroke currentColor
+    color: inherit
+    cursor: pointer
+    font-size: $font-size-xs
+    height: $size
+    left: 50%
+    min-width: 0
+    position: relative
+    transform: translateX(-50%)
+    transition: width $speed ease-in-out, border-radius $speed ease-in-out, padding $speed
+    transition-delay: 0s, $speed, 0s
+    width: $size
+
+    &:focus, &:valid
+      border-radius: 0
+      box-shadow: 0 0 0 1px currentColor
+      cursor: text
+      outline: 0
+      padding: 14px
+      transition-delay: $speed, 0s, $speed
+      width: 200px
+
+      + .header__search-delete
+        left: calc(100% - #{$size * 2})
+        pointer-events: all
+        transition-delay: .2s
+
+        &:before
+          transform: translate(-50%,-50%) rotate(-45deg) scaleY(1.5)
+          width: 1px
+
+        &:after
+          transform: translate(-50%,-50%) rotate(45deg) scaleY(1.5)
+          transition-delay: $speed
+          width: 1px
+
+  .header__search-delete
+    background: none
+    border-radius: 100%
+    border: 0
+    color: inherit
+    cursor: pointer
+    left: 50%
+    padding: 0
+    pointer-events: none
+    position: absolute
+    top: 50%
+    transition: left $speed ease-in-out
+
+    &:focus
+      outline: none
+
+    &:before
+      background:  currentColor
+      content: ''
+      height: $size/4*3
+      left: 0
+      position: absolute
+      transform: translate($size/8*5 + 1,$size/8*5 + 1) translate(-50%,-50%) rotate(-45deg) scaleY(1)
+      transition: transform $speed/2 ease-in-out
+      transition-delay: $speed*1.5
+      width: $stroke
+
+    &:after
+      background:  currentColor
+      content: ''
+      height: $size/4*3
+      left: 50%
+      position: absolute
+      top: 50%
+      transform: translate(-50%,-50%) rotate(45deg) scaleY(0)
+      transition: transform $speed/2 ease-in-out
+      transition-delay: $speed
+      width: $stroke

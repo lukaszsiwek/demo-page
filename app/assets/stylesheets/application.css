@@ -44,7 +44,7 @@
   [class*=icon--] + *, * + [class*=icon--] {
     margin-left: 10px; }
   [class*=icon--]:hover {
-    color: #ecd17e;
+    color: #daaa17;
     cursor: pointer; }
 
 .icon--bag:before {
@@ -58,7 +58,6 @@
 
 .icon--bag:before {
   font-size: 24px;
-  top: -3px;
   position: relative; }
 
 @-webkit-keyframes play {
@@ -215,7 +214,7 @@ body {
     font-size: 12px;
     margin: 0 30px; }
     .header__navigation a:hover {
-      color: #ecd17e; }
+      color: #daaa17; }
 .header__logo {
   -ms-flex-item-align: center;
       align-self: center;
@@ -309,7 +308,7 @@ body {
   transition: all 0.3s ease-in-out;
   width: 25px; }
   .header__menu:hover span {
-    background-color: #ecd17e; }
+    background-color: #daaa17; }
     .header__menu:hover span:first-child {
       margin-right: 50%; }
     .header__menu:hover span:last-child {
@@ -352,3 +351,102 @@ body {
   width: 280px; }
 #navbar-menu:checked ~ .hero__header {
   width: calc(100% - 280px); }
+
+.inputbox {
+  height: 10px;
+  position: relative; }
+  .inputbox:hover {
+    color: #daaa17; }
+    .inputbox:hover .header__search-delete {
+      color: #daaa17; }
+  .inputbox input {
+    background: none;
+    border-radius: 100%;
+    border-width: 0;
+    -webkit-box-shadow: 0 0 0 2px currentColor;
+            box-shadow: 0 0 0 2px currentColor;
+    color: inherit;
+    cursor: pointer;
+    font-size: 12px;
+    height: 10px;
+    left: 50%;
+    min-width: 0;
+    position: relative;
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+    -webkit-transition: width 0.3s ease-in-out, border-radius 0.3s ease-in-out, padding 0.3s;
+    transition: width 0.3s ease-in-out, border-radius 0.3s ease-in-out, padding 0.3s;
+    -webkit-transition-delay: 0s, 0.3s, 0s;
+            transition-delay: 0s, 0.3s, 0s;
+    width: 10px; }
+    .inputbox input:focus, .inputbox input:valid {
+      border-radius: 0;
+      -webkit-box-shadow: 0 0 0 1px currentColor;
+              box-shadow: 0 0 0 1px currentColor;
+      cursor: text;
+      outline: 0;
+      padding: 14px;
+      -webkit-transition-delay: 0.3s, 0s, 0.3s;
+              transition-delay: 0.3s, 0s, 0.3s;
+      width: 200px; }
+      .inputbox input:focus + .header__search-delete, .inputbox input:valid + .header__search-delete {
+        left: calc(100% - 20px);
+        pointer-events: all;
+        -webkit-transition-delay: 0.2s;
+                transition-delay: 0.2s; }
+        .inputbox input:focus + .header__search-delete:before, .inputbox input:valid + .header__search-delete:before {
+          -webkit-transform: translate(-50%, -50%) rotate(-45deg) scaleY(1.5);
+                  transform: translate(-50%, -50%) rotate(-45deg) scaleY(1.5);
+          width: 1px; }
+        .inputbox input:focus + .header__search-delete:after, .inputbox input:valid + .header__search-delete:after {
+          -webkit-transform: translate(-50%, -50%) rotate(45deg) scaleY(1.5);
+                  transform: translate(-50%, -50%) rotate(45deg) scaleY(1.5);
+          -webkit-transition-delay: 0.3s;
+                  transition-delay: 0.3s;
+          width: 1px; }
+  .inputbox .header__search-delete {
+    background: none;
+    border-radius: 100%;
+    border: 0;
+    color: inherit;
+    cursor: pointer;
+    left: 50%;
+    padding: 0;
+    pointer-events: none;
+    position: absolute;
+    top: 50%;
+    -webkit-transition: left 0.3s ease-in-out;
+    transition: left 0.3s ease-in-out; }
+    .inputbox .header__search-delete:focus {
+      outline: none; }
+    .inputbox .header__search-delete:before {
+      background: currentColor;
+      content: "";
+      height: 7.5px;
+      left: 0;
+      position: absolute;
+      -webkit-transform: translate(7.25px, 7.25px) translate(-50%, -50%) rotate(-45deg) scaleY(1);
+              transform: translate(7.25px, 7.25px) translate(-50%, -50%) rotate(-45deg) scaleY(1);
+      -webkit-transition: -webkit-transform 0.15s ease-in-out;
+      transition: -webkit-transform 0.15s ease-in-out;
+      transition: transform 0.15s ease-in-out;
+      transition: transform 0.15s ease-in-out, -webkit-transform 0.15s ease-in-out;
+      -webkit-transition-delay: 0.45s;
+              transition-delay: 0.45s;
+      width: 2px; }
+    .inputbox .header__search-delete:after {
+      background: currentColor;
+      content: "";
+      height: 7.5px;
+      left: 50%;
+      position: absolute;
+      top: 50%;
+      -webkit-transform: translate(-50%, -50%) rotate(45deg) scaleY(0);
+              transform: translate(-50%, -50%) rotate(45deg) scaleY(0);
+      -webkit-transition: -webkit-transform 0.15s ease-in-out;
+      transition: -webkit-transform 0.15s ease-in-out;
+      transition: transform 0.15s ease-in-out;
+      transition: transform 0.15s ease-in-out, -webkit-transform 0.15s ease-in-out;
+      -webkit-transition-delay: 0.3s;
+              transition-delay: 0.3s;
+      width: 2px; }
