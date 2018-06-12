@@ -9,8 +9,9 @@
   text-decoration: none
 
 body
-  font-family: $font-family-base
+  background-color: $brand-secondary
   color: $color-black
+  font-family: $font-family-base
 
 .hidden
   display: none
@@ -57,7 +58,6 @@ body
     display: flex
 
   &__image
-    align-items: center
     display: flex
     height: 747px
     left: -35%
@@ -74,14 +74,15 @@ body
     font:
       family: $font-family-light
       size: $font-size-sm
-    left: 0
     letter-spacing: 3px
     margin-top: $header-height
     position: absolute
+    right: 0
     text:
       align: center
       transform: uppercase
     top: 8%
+    transition: width .5s ease-in-out
     width: 100%
     z-index: 1
 
@@ -92,11 +93,35 @@ body
       width: 3 * $m
 
   &__navbar-left
+    background-color: $color-black
+    color: $color-white
+    left: -$m-sm
     min-height: 100vh
     padding-top: $header-height
+    position: relative
     transform: translateX(-280px)
     transition: transform .5s ease-in-out, width .5s ease-in-out
     width: 0
+    z-index: $z-low
+
+  &__navbar-left-container
+    display: flex
+    flex-direction: column
+    padding: 0 $m-xs 0 (3 * $m-sm)
+
+  &__navbar-left-item
+    color: $color-yellow-light
+    font-size: $font-size-xs
+    padding: $m-sm 0
+
+    &:hover
+      color: $color-yellow
+
+  &__navbar-menu
+    font-size: $font-size-sm
+    letter-spacing: 2px
+    padding: $m-sm 0 $m
+    text-transform: uppercase
 
 .header
   &__left, &__right, &__navigation
@@ -131,14 +156,14 @@ body
         white-space: nowrap
 
         a
-          color: $color-yellow
+          color: $color-yellow-light
           display: block
           padding: $m-xs (3 * $m-xs)
           text-decoration: none
           transition: all .3s ease
 
           &:hover
-            color: $color-yellow-light
+            color: $color-yellow
 
         &:first-child > a
           padding-top: $m-sm
@@ -205,16 +230,39 @@ body
   &__name
     font:
       family: $font-family-medium
-      size: $font-size-xxl
+      size: $font-size-xxl + 5px
       weight: $font-weight-black
     letter-spacing: $font-size-xs
-    text-transform: uppercase
+    text:
+      align: right
+      transform: uppercase
 
   &__info
     padding: 0 (30 * $m-xs)
+    text-align: center
 
   &__actions
+    align-items: center
     display: flex
+
+  &__price
+    padding: (2 * $m) 0 (3 * $m)
+
+  &__price-new
+    font-size: $font-size-lg
+
+  &__price-old
+    color: $color-gray-dark
+    font:
+      family: $font-family-light
+      size: $font-size-base
+    padding-left: $m-sm
+    text-decoration: line-through
+
+  &__author
+    font:
+      family: $font-family-light
+      size: $font-size-base
 
 .degree
   align-items: center
@@ -229,6 +277,7 @@ body
   justify-content: center
   position: absolute
   right: 2 * $m-xs
+  top: 20%
   width: 13 * $m-xs
 
   &:after
@@ -292,7 +341,7 @@ body
     transform: translateX(0)
     width: 280px
 
-  .hero__header
+  .hero__header, .hero__subtitle
     width: calc(100% - 280px)
 
 .inputbox
@@ -378,3 +427,30 @@ body
       transition-delay: $speed
       width: $stroke
       will-change: opacity
+
+.btn
+  display: flex
+  transition: all .3s ease 0s
+
+  &:hover
+    background-color: $color-yellow-light
+    color: $color-white
+    transform: translateY(-$m-sm)
+
+.btn-white
+  background-color: $color-white
+  color: $color-black
+  font-size: $font-size-xs
+  padding: $m (10 * $m-xs)
+
+.btn-black
+  background-color: $color-black
+  box-shadow: 0 (7 * $m-xs) (14 * $m-xs) (-$m-sm) rgba(0, 0, 0, 0.35)
+  color: $color-white
+  font-size: $font-size-xs
+  letter-spacing: 2px
+  padding: (3 * $m-sm) (10 * $m-xs)
+  text-transform: uppercase
+
+  &:hover
+    color: $color-black
