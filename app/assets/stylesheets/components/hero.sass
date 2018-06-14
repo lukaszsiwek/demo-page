@@ -48,7 +48,6 @@ body
 
   &__left, &__right
     flex: 1
-    order: 0
     padding-top: $header-height
 
   &__left
@@ -58,6 +57,10 @@ body
     background-color: $brand-secondary
     display: flex
     justify-content: center
+    order: 2
+
+    @include media-breakpoint-up(xl)
+      order: 1
 
   &__right
     +column(12)
@@ -65,19 +68,37 @@ body
     align-items: center
     background-color: $brand-primary
     display: flex
+    justify-content: center
+    margin-top: 15 * $m-xs
+    order: 1
+
+    @include media-breakpoint-up(xl)
+      justify-content: initial
+      margin-top: 0
 
   &__image
     display: flex
-    height: 747px
-    left: -35%
-    min-width: 1000px
+    height: 555px
+    left: 0
+    min-width: 724px
     position: relative
     top: 10%
 
+    @include media-breakpoint-up(xl)
+      left: -25%
+
+    @include media-breakpoint-up(xxl)
+      height: 747px
+      left: -35%
+      min-width: 1000px
+
     .hero__furniture-image
-      background-image: url("../../assets/images/sprite.png")
+      background-image: url("../../assets/images/sprite2.png")
       height: 100%
       width: 100%
+
+      @include media-breakpoint-up(xxl)
+        background-image: url("../../assets/images/sprite.png")
 
   &__subtitle
     font:
@@ -137,6 +158,7 @@ body
     flex: 1
 
   &__navigation
+    +hidden-lg
     display: flex
     justify-content: center
 
@@ -234,6 +256,8 @@ body
     display: flex
     padding: 0 (6 * $m-xs)
 
+  &__user
+    +hidden-lg
 
 .item
   &__name
@@ -294,7 +318,10 @@ body
 
   &:hover
     + .hero__furniture-image
-      animation: play-big 1.5s steps(16) infinite
+      animation: play-small 1.5s steps(16) infinite
+
+      @include media-breakpoint-up(xxl)
+        animation: play-big 1.5s steps(16) infinite
 
 .header__menu
   cursor: pointer
@@ -463,33 +490,3 @@ body
 
   &:hover
     color: $color-black
-
-//------- MOBILE ---------------------------------------------------------------------------
-@media screen and (max-width: 1400px)
-  .hero__image
-    height: 555px
-    left: -25%
-    min-width: 724px
-
-    .hero__furniture-image
-      background: url("../../assets/images/sprite2.png")
-
-  .degree
-    &:hover
-      + .hero__furniture-image
-        animation: play-small 1.5s steps(16) infinite
-
-@media screen and (max-width: 1199px)
-  .hero__left
-    order: 2
-
-  .hero__right
-    justify-content: center
-    margin-top: 15 * $m-xs
-    order: 1
-
-  .hero__image
-    left: auto
-
-  .hero__header
-    width: auto
