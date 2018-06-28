@@ -114,9 +114,6 @@ body
         left: 2 * $m-xs
         right: 2 * $m-xs
 
-  &__subtitle
-    position: absolute
-
   &__left
     +column(12)
     +column-xl(6)
@@ -511,12 +508,12 @@ body
     transform: translateX(0)
     width: 280px
 
-  .hero__header, .hero__subtitle
+  .hero__header, .subtitle__hero
     width: 100%
 
 @include media-breakpoint-up(xl)
   #navbar-menu:checked ~
-    .hero__header, .hero__subtitle
+    .hero__header, .subtitle__hero
       width: calc(100% - 280px)
 
 .inputbox
@@ -645,7 +642,7 @@ body
     +column(12)
     +column-xl(4)
     align-items: center
-    border-right: 1px solid $color-gray
+    border-right: $page-border
     display: flex
     flex-direction: column
     height: 600px
@@ -697,10 +694,51 @@ body
     display: flex
     flex-direction: column
 
+.subtitle
+  font:
+    family: $font-family-light
+    size: $font-size-sm
+  letter-spacing: 3px
+  margin-top: $header-height * 3
+  right: 0
+  text:
+    align: center
+    transform: uppercase
+  top: 0
+  +animate(width)
+  transition-duration: .5s
+  width: 100%
+  z-index: $z-low
+
+  &__hero
+    position: absolute
+
+    @include media-breakpoint-up(sm)
+      margin-top: $header-height
+      top: 8%
+
+  &__posts
+    margin-top: 3 * $m
+
+    @include media-breakpoint-up(sm)
+      margin-top: 4 * $m
+
+    @include media-breakpoint-up(lg)
+      margin-top: 7 * $m
+
+    @include media-breakpoint-up(xl)
+      margin-top: 4 * $m
+
+  .hero__border
+    border-top: $post-border
+    margin: 0 auto
+    padding-bottom: 3 * $m-xs
+    width: 3 * $m
+
 .recent-posts
   &__content
     +row
-    border-top: 1px solid $color-gray
+    border-top: $page-border
     margin:
       left: auto
       right: auto
@@ -708,15 +746,24 @@ body
   &__info
     display: flex
     flex-direction: column
+    margin-bottom: 3 * $m
     text-align: center
+
+    @include media-breakpoint-up(xl)
+      margin-bottom: 0
 
     .btn-posts
       align-self: center
       background-color: transparent
       border: 1px solid $color-gray-dark
       color: $color-black
+      display: inline-block
       font-size: $font-size-xs
+      margin-top: $m
       padding: $m (12 * $m-xs)
+
+      @include media-breakpoint-up(xl)
+        margin-top: 0
 
       &:hover
         background-color: $color-black
@@ -735,7 +782,7 @@ body
     font:
       family: $font-family-light
       size: $font-size-sm
-    padding-bottom: $m
+    padding: $m 0
 
   &__left, &__right
     +column(12)
@@ -743,7 +790,10 @@ body
 
   &__left
     background-color: $brand-primary
-    min-height: 30 * $m
+    min-height: 15 * $m
+
+    @include media-breakpoint-up(lg)
+      min-height: 30 * $m
 
   &__image
     +animate(opacity, transform)
@@ -758,12 +808,15 @@ body
     margin: auto
     overflow: hidden
     position: relative
-    top: 30 * $m-xs
+    top: 10 * $m-xs
     width: 85%
     z-index: $z-low
 
     &:hover
       background-color: $color-white
+
+    @include media-breakpoint-up(lg)
+      top: 30 * $m-xs
 
     @include media-breakpoint-up(xl)
       margin: 0 0 0 23%
@@ -776,9 +829,13 @@ body
     flex-direction: column
     height: 90%
     justify-content: space-between
-    padding-left: 0
-    padding-top: 5 * $m
+    padding:
+      left: 0
+      top: 5 * $m-xs
     width: auto
+
+    @include media-breakpoint-up(lg)
+      padding-top: 5 * $m
 
     @include media-breakpoint-up(xl)
       padding-left: 14 * $m-xs
@@ -803,7 +860,6 @@ body
 
     .subtitle
       bottom: $m
-      margin-top: 0
       position: absolute
       top: auto
 
@@ -950,8 +1006,8 @@ body
 
   &__input
     background-color: transparent
-    border-bottom: 2px solid $color-black
     border: none
+    border-bottom: 2px solid $color-black
     line-height: 9 * $m-xs
     outline: none
     width: 100%
@@ -1068,31 +1124,6 @@ body
   text-transform: uppercase
   top: 13 * $m-xs
   transform: rotate(-90deg)
-
-.subtitle
-  font:
-    family: $font-family-light
-    size: $font-size-sm
-  letter-spacing: 3px
-  margin-top: $header-height * 3
-  right: 0
-  text:
-    align: center
-    transform: uppercase
-  top: 0
-  transition: width .5s ease-in-out
-  width: 100%
-  z-index: 1
-
-  @include media-breakpoint-up(sm)
-    margin-top: $header-height
-    top: 8%
-
-  .hero__border
-    border-top: 1px solid #000
-    margin: 0 auto
-    padding-bottom: 3 * $m-xs
-    width: 3 * $m
 
 .degree-off
   border: (2 * $m-xs) solid $color-yellow-light
