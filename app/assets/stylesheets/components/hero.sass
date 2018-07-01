@@ -85,16 +85,18 @@ body
   position: relative
 
   &__header
+    +animate(width)
     align-items: center
-    border-bottom: 1px solid $color-gray
+    border-bottom: $page-border
     display: flex
     height: $header-height
     position: absolute
     right: 0
     top: 0
-    transition: width .5s ease-in-out
+    transition-duration: .5s
     white-space: nowrap
     width: 100%
+    will-change: opacity
     z-index: $z-low
 
   &__content
@@ -120,10 +122,14 @@ body
     align-items: center
     background-color: $brand-secondary
     display: flex
+    flex-direction: column
     order: 2
+    padding-bottom: 3 * $m
 
     @include media-breakpoint-up(xl)
+      flex-direction: row
       order: 1
+      padding-bottom: 0
 
   &__right
     +column(12)
@@ -160,11 +166,12 @@ body
     @include media-breakpoint-up(xxl)
       height: 747px
       left: -35%
-      min-width: 1000px
+      min-width: 50 * $m
 
     .hero__furniture-image
-      background-image: url("../../assets/images/sprite2.png")
-      background-size: 5792px
+      background:
+        image: url("../../assets/images/sprite2.png")
+        size: 5792px
       height: 100%
       width: 100%
 
@@ -175,6 +182,7 @@ body
         background-image: url("../../assets/images/sprite.png")
 
   &__navbar-left
+    +animate(transform, width)
     background-color: $color-black
     bottom: 0
     color: $color-white
@@ -183,9 +191,10 @@ body
     padding-top: $header-height
     position: absolute
     top: 0
-    transform: translateX(-280px)
-    transition: transform .5s ease-in-out, width .5s ease-in-out
+    transform: translateX(-$navbar-left)
+    transition-duration: .5s
     width: 0
+    will-change: opacity
     z-index: $z-low
 
     @include media-breakpoint-up(xl)
@@ -220,21 +229,34 @@ body
     position: absolute
     right: 0
     top: 0
-    z-index: 99
+    z-index: $z-low
 
   &__slide-changer
+    bottom: 80%
     display: flex
     flex-direction: column
-    left: 0
-    padding-left: 5 * $m-sm
-    position: relative
+    left: auto
+    padding-left: 0
+    position: absolute
+    top: $m
+    transform: rotate(-90deg)
+
+    @include media-breakpoint-up(xl)
+      left: 0
+      padding-left: 5 * $m-sm
+      position: relative
+      top: 0
+      transform: rotate(0)
 
   &__slide-changer-item
     animation: change-selector 24s infinite ease-in-out
     background-color: $color-gray-middle
     height: 3 * $m-xs
-    margin-bottom: 1px
+    margin-bottom: 2px
     width: 2px
+
+    @include media-breakpoint-up(xl)
+      margin-bottom: 1px
 
     &:nth-of-type(1)
       animation-delay: 0
@@ -254,60 +276,63 @@ body
     display: flex
     justify-content: center
 
+  &__menu-title:visited, &__menu-item:visited
+    color: $color-black
+
   &__menu-item
     color: $color-black
     font-size: $font-size-xs
     margin: 0 (6 * $m-xs)
     position: relative
 
-    ul
-      left: 0
-      margin: 0
-      opacity: 0
-      padding: $m-sm 0 0 0
-      position: absolute
-      top: calc( 50% + $m)
-      transition: all .2s ease
-      visibility: hidden
-      z-index: $z-high
-
-      li
-        background-color: $color-black
-        line-height: $m
-        list-style: none
-        text-align: left
-        white-space: nowrap
-
-        a
-          color: $color-yellow-light
-          display: block
-          padding: $m-xs (3 * $m-xs)
-          text-decoration: none
-          transition: all .3s ease
-
-          &:hover
-            color: $color-yellow
-
-        &:first-child > a
-          padding-top: $m-sm
-
-        &:last-child > a
-          padding-bottom: $m-sm
-
-    &:hover, a:hover
+    &:hover, &:hover .header__menu-title, .header__submenu-link:hover
       color: $color-yellow
 
-      a + ul
+      .header__menu-title + .header__submenu
         opacity: 1
         top: calc( 50% + $m-xs)
         visibility: visible
 
+  &__submenu
+    left: 0
+    margin: 0
+    opacity: 0
+    padding: $m-sm 0 0 0
+    position: absolute
+    top: calc( 50% + $m)
+    transition: all .2s ease
+    visibility: hidden
+    z-index: $z-high
+
+  &__submenu-item
+    background-color: $color-black
+    line-height: $m
+    list-style: none
+    text-align: left
+    white-space: nowrap
+
+    &:first-child > .header__submenu-link
+      padding-top: $m-sm
+
+    &:last-child > .header__submenu-link
+      padding-bottom: $m-sm
+
+  &__submenu-link
+    color: $color-yellow-light
+    display: block
+    padding: $m-xs (3 * $m-xs)
+    text-decoration: none
+
+    &:hover
+      color: $color-yellow
+
   &__logo
     align-self: center
     color: $color-black
-    font-family: $font-family-open
-    font-size: 27px
-    font-weight: $font-weight-bold
+    font:
+      family: $font-family-open
+      size: $font-size-xlg
+      weight: $font-weight-bold
     margin-left: (6 * $m-xs)
     position: relative
 
@@ -344,7 +369,7 @@ body
     align:
       items: center
       self: stretch
-    border-left: 1px solid $color-gray
+    border-left: $page-border
     display: flex
     order: 1
     padding: 0 (6 * $m-xs)
@@ -367,6 +392,141 @@ body
   &__user
     +hidden-lg
 
+  &__menu
+    +animate(all)
+    cursor: pointer
+    height: 3 * $m-xs
+    margin: 0 (6 * $m-xs)
+    position: relative
+    width: 5 * $m-xs
+
+    &:hover
+      span
+        background-color: $color-yellow
+
+        &:first-child
+          margin-right: 50%
+
+        &:last-child
+          margin-left: 50%
+
+    span
+      background-color: $color-black
+      border-radius: 3px
+      display: block
+      height: 2px
+      opacity: 1
+      position: absolute
+      transform: rotate(0deg)
+      transition: $transition-duration $transition-function
+      width: 100%
+
+      &:nth-child(1)
+        right: 0
+        top: 0
+        width: 50%
+
+      &:nth-child(2)
+        top: 6px
+
+      &:nth-child(3)
+        top: 12px
+        width: 50%
+
+    &-container
+      align:
+        items: center
+        self: stretch
+      border-right: $page-border
+      display: flex
+
+  &__inputbox
+    left: 8px
+    position: relative
+
+    &:hover
+      color: $color-yellow
+
+      .header__search-delete, .header__input
+        color: $color-yellow
+
+  &__input
+    +animate(width, border-radius, box-shadow, padding)
+    background: none
+    border:
+      radius: 100%
+      width: 0
+    box-shadow: 0 0 0 $stroke currentColor
+    cursor: pointer
+    font-size: $font-size-xs
+    height: $size
+    transition-delay: $speed * 2, $speed * 2, $speed * 2, $speed * 2
+    width: $size
+    will-change: opacity
+
+    &:focus, &:valid
+      border-radius: 0
+      box-shadow: 0 0 0 1px currentColor
+      cursor: text
+      outline: 0
+      padding: 3 * $m-xs
+      transition-delay: 0s, 0s, 0s, $speed/2
+      width: $input-width
+
+      + .header__search-delete
+        left: -$m
+        transition: left $speed ease-in-out 0s
+        will-change: opacity
+
+        &:before
+          transform: translate(-$m-xs, -50%) rotate(-45deg) scaleY(1.5)
+          width: 1px
+
+        &:after
+          transform: translate(-$m-xs,-50%) rotate(45deg) scaleY(1.5)
+          transition-delay: $speed * 1.8
+          width: 1px
+          will-change: opacity
+
+  &__search-delete
+    +animate(left)
+    background: none
+    border: 0
+    cursor: pointer
+    height: $m
+    left: 0
+    outline: none
+    position: relative
+    transition-delay: $speed * 2
+    width: $m
+
+    &:focus
+      outline: none
+
+    &:before
+      +animate(transform, width)
+      background:  currentColor
+      content: ''
+      height: $size/4*3
+      position: absolute
+      transform: translate(-8px, 50%) rotate(-45deg) scaleY(1)
+      transition-duration:  $speed/2,  $speed/2
+      transition-delay: $speed * 1.5
+      width: $stroke
+      will-change: opacity
+
+    &:after
+      +animate(transform, width)
+      background:  currentColor
+      content: ''
+      height: $size/4*3
+      position: absolute
+      transform: translate(-4px,-50%) rotate(-45deg) scaleY(0)
+      transition-duration: $speed/2, $speed/2
+      transition-delay: $speed
+      width: $stroke
+      will-change: opacity
+
 .item
   &__name
     font:
@@ -380,23 +540,30 @@ body
 
   &__info
     margin: auto
-    min-height: 315px
-    min-width: 350px
+    min:
+      height: 63 * $m-xs
+      width: 35 * $m-sm
     padding: 0
     position: relative
     text-align: center
 
   &__info-slides-container
+    display: flex
+    justify-content: center
     min-height: 238px
 
+    @include media-breakpoint-up(xl)
+      display: flex
+      justify-content: flex-end
+
   &__info-slides-item
-    animation-duration: 24s
-    animation-iteration-count: infinite
-    animation-name: slide
-    animation-timing-function: ease-in-out
+    animation: slide 24s ease-in-out infinite
     opacity: 1
     position: absolute
-    right: 0
+    right: initial
+
+    @include media-breakpoint-up(xl)
+      right: 0
 
     &:nth-of-type(1)
       animation-delay: 0
@@ -436,8 +603,9 @@ body
   border-radius: 50%
   cursor: pointer
   display: flex
-  font-size: $font-size-sm
-  font-weight: $font-weight-bold
+  font:
+    size: $font-size-sm
+    weight: $font-weight-bold
   height: 13 * $m-xs
   justify-content: center
   position: absolute
@@ -454,59 +622,10 @@ body
       @include media-breakpoint-up(xxl)
         animation: play-big 1.5s steps(16) infinite
 
-.header__menu
-  cursor: pointer
-  height: 3 * $m-xs
-  margin: 0 (6 * $m-xs)
-  position: relative
-  transition: all $transition-duration $transition-function
-  width: 5 * $m-xs
-
-  &:hover
-    span
-      background-color: $color-yellow
-
-      &:first-child
-        margin-right: 50%
-
-      &:last-child
-        margin-left: 50%
-
-  span
-    background-color: $color-black
-    border-radius: 3px
-    display: block
-    height: 2px
-    opacity: 1
-    position: absolute
-    transform: rotate(0deg)
-    transition: $transition-duration $transition-function
-    width: 100%
-
-    &:nth-child(1)
-      right: 0
-      top: 0
-      width: 50%
-
-    &:nth-child(2),
-    &:nth-child(3)
-      top: 6px
-
-    &:nth-child(4)
-      top: 12px
-      width: 50%
-
-  &-container
-    align:
-      items: center
-      self: stretch
-    border-right: 1px solid $color-gray
-    display: flex
-
 #navbar-menu:checked ~
   .hero__navbar-left
     transform: translateX(0)
-    width: 280px
+    width: $navbar-left
 
   .hero__header, .subtitle__hero
     width: 100%
@@ -516,107 +635,24 @@ body
     .hero__header, .subtitle__hero
       width: calc(100% - 280px)
 
-.inputbox
-  left: 8px
-  position: relative
-
-  &:hover
-    color: $color-yellow
-
-    .header__search-delete, input
-      color: $color-yellow
-
-  input
-    background: none
-    border:
-      radius: 100%
-      width: 0
-    box-shadow: 0 0 0 $stroke currentColor
-    cursor: pointer
-    font-size: $font-size-xs
-    height: $size
-    transition: width $speed ease-in-out, border-radius $speed ease-in-out, box-shadow $speed ease-in, padding $speed ease-in-out
-    transition-delay: $speed * 2, $speed * 2, $speed * 2, $speed * 2
-    width: $size
-    will-change: opacity
-
-    &:focus, &:valid
-      border-radius: 0
-      box-shadow: 0 0 0 1px currentColor
-      cursor: text
-      outline: 0
-      padding: 3 * $m-xs
-      transition-delay: 0s, 0s, 0s, $speed/2
-      width: $input-width
-
-      + .header__search-delete
-        left: -$m
-        transition: left $speed ease-in-out 0s
-        will-change: opacity
-
-        &:before
-          transform: translate(-$m-xs, -50%) rotate(-45deg) scaleY(1.5)
-          width: 1px
-
-        &:after
-          transform: translate(-$m-xs,-50%) rotate(45deg) scaleY(1.5)
-          transition-delay: $speed * 1.8
-          width: 1px
-          will-change: opacity
-
-  .header__search-delete
-    background: none
-    border: 0
-    cursor: pointer
-    height: $m
-    left: 0
-    outline: none
-    position: relative
-    transition: left $speed ease-in-out $speed * 2
-    width: $m
-
-    &:focus
-      outline: none
-
-    &:before
-      background:  currentColor
-      content: ''
-      height: $size/4*3
-      position: absolute
-      transform: translate(-8px, 50%) rotate(-45deg) scaleY(1)
-      transition: transform $speed/2 ease-in-out, width $speed/2 ease-in-out
-      transition-delay: $speed * 1.5
-      width: $stroke
-      will-change: opacity
-
-    &:after
-      background:  currentColor
-      content: ''
-      height: $size/4*3
-      position: absolute
-      transform: translate(-4px,-50%) rotate(-45deg) scaleY(0)
-      transition: transform $speed/2 ease-in-out, width $speed/2 ease-in-out
-      transition-delay: $speed
-      width: $stroke
-      will-change: opacity
-
 .btn
   display: flex
 
-.btn-white, .btn-black
+.btn-info, .btn-action // info, action
   &:hover
     background-color: $color-yellow-light
     color: $color-white
     transform: translateY(-$m-sm)
 
-.btn-white
+.btn-info
   background-color: $color-white
   color: $color-black
   font-size: $font-size-xs
   padding: $m (10 * $m-xs)
   transition: all .3s ease 0s
 
-.btn-black
+.btn-action
+  +animate(all)
   background-color: $color-black
   box-shadow: 0 (7 * $m-xs) (14 * $m-xs) (-$m-sm) rgba(0, 0, 0, 0.35)
   color: $color-white
@@ -624,13 +660,12 @@ body
   letter-spacing: 2px
   padding: (3 * $m-sm) (10 * $m-xs)
   text-transform: uppercase
-  transition: all .3s ease 0s
 
   &:hover
     color: $color-black
 
 .products
-  border-top: 1px solid $color-gray
+  border-top: $page-border
   display: flex
   flex-direction: column
   width: 100%
@@ -642,16 +677,24 @@ body
     +column(12)
     +column-xl(4)
     align-items: center
-    border-right: $page-border
+    border-bottom: $page-border
     display: flex
+    flex: 1 1 100%
     flex-direction: column
-    height: 600px
+    height: auto
+    padding-bottom: 3 * $m
+
+    @include media-breakpoint-up(xl)
+      border: none
+      border-right: $page-border
+      height: 30 * $m
+      padding-bottom: 0
 
     &:last-child
       border-right: none
 
     .sale
-      top: 90px
+      top: 9 * $m-sm
 
   &__item-name
     font-size: $font-size-xlg
@@ -669,13 +712,31 @@ body
     font-size: $font-size-md
 
   &__item-image
+    +animate(transform)
     background:
       position: 50%
+      repeat: no-repeat
       size: cover
     cursor: pointer
-    height: 400px
-    transition: transform .3s ease-in-out
-    width: 80%
+    height: 12 * $m
+    margin: $m-sm 0
+    width: 85%
+    will-change: opacity
+
+    @include media-breakpoint-up(sm)
+      height: 15 * $m
+      margin-bottom: 3 * $m-sm
+      width: 85%
+
+    @include media-breakpoint-up(md)
+      height: 21 * $m
+
+    @include media-breakpoint-up(lg)
+      height: 26 * $m
+
+    @include media-breakpoint-up(xl)
+      height: 35 * $m-sm
+      margin: (5 * $m-sm) 0 0
 
     &:hover
       transform: scale(1.2)
@@ -712,10 +773,14 @@ body
 
   &__hero
     position: absolute
+    margin-top: 19 * $m-sm
 
     @include media-breakpoint-up(sm)
-      margin-top: $header-height
+      margin-top: 5 * $m-sm
       top: 8%
+
+    @include media-breakpoint-up(xl)
+      margin-top: $header-height
 
   &__posts
     margin-top: 3 * $m
@@ -844,20 +909,26 @@ body
 .collection
   background-color: $brand-secondary
   display: flex
-  height: 350px
+  height: 17 * $m-sm
   justify-content: space-between
   position: relative
 
+  @include media-breakpoint-up(xl)
+    height: 17 * $m
+
   &__right
     background-color: $brand-primary
-    height: 380px
+    height: 9 * $m
     position: relative
-    top: -(6 * $m-xs)
-    width: 180px
+    top: -$m-sm
+    width: 9 * $m-sm
+
+    @include media-breakpoint-up(xl)
+      height: 18 * $m
+      top: -$m
+      width: 9 * $m
 
   &__left
-    height: 100%
-
     .subtitle
       bottom: $m
       position: absolute
@@ -868,23 +939,34 @@ body
     display: flex
     flex-wrap: wrap
     justify-content: center
-    min-height: 650px
-    padding: (5 * $m-xs) 0 (5 * $m)
+    min-height: 65 * $m-sm
+    padding: (5 * $m-xs) 0 (2 * $m)
+
+    @include media-breakpoint-up(xl)
+      padding-bottom: (5 * $m)
 
   &__item
-    background-color: #f2f3f6
-    border: 1px solid $color-gray
+    height: 25 * $m
+
+  &__container-hidden
+    display: flex
+    flex-direction: column
+    height: 100%
+    justify-content: space-between
+    overflow: hidden
+
+  &__item-wrapper
+    +animate(height, background-color, box-shadow)
+    background-color: $item-background
+    border: $page-border
     cursor: pointer
     display: flex
     flex-direction: column
-    height: 450px
-    justify-content: space-between
+    height: 45 * $m-sm
     margin: (5 * $m-xs) (3 * $m-xs) 0
     position: relative
-    transition: height, background-color, box-shadow
-    transition-duration: .3s
-    transition-timing-function: ease-in-out
-    width: 270px
+    width: 27 * $m-sm
+    will-change: opacity
 
     &:before
       align-self: center
@@ -894,19 +976,19 @@ body
       opacity: 0
       position: relative
       top: -4px
-      width: 130px
+      width: 13 * $m-sm
 
     &:hover
-      background-color: #f5f6f9
+      background-color: $item-background-hover
       border-bottom: 0
-      box-shadow: 0 35px 70px -10px rgba(0, 0, 0, 0.2)
-      height: 480px
+      box-shadow: $box-shadow
+      height: 24 * $m
 
       .collection__button-discover
         opacity: 1
 
       .collection__item-title
-        padding-top: 5 * $m
+        padding-top: 5 * $m-xs
 
       .collection__image
         transform: scale(1.3) rotate(-3deg)
@@ -914,18 +996,10 @@ body
       &:before
         opacity: 1
 
-  &__item-wrapper
-    display: flex
-    flex-direction: column
-    height: 100%
-    justify-content: space-between
-    overflow: hidden
-
-
   &__button-discover
     align-self: center
+    border: $page-border
     border-bottom: 3px solid $color-black
-    border: 1px solid $color-gray
     color: $color-black
     font-size: $font-size-xs
     opacity: 0
@@ -936,12 +1010,12 @@ body
       color: $color-white
 
   &__image
-    height: 330px
+    +animate(transform)
     background:
       position: -30% (-3 * $m-xs)
       repeat: no-repeat
       size: 135%
-    transition: transform .3s ease-in-out
+    height: 33 * $m-sm
 
     &--tables
       background-image: url("../../assets/images/table.png")
@@ -956,6 +1030,7 @@ body
       background-image: url("../../assets/images/sofa.png")
 
   &__item-title
+    +animate(padding-top)
     flex: 1
     font:
       size: $font-size-lg
@@ -965,12 +1040,13 @@ body
     text:
       align: center
       transform: uppercase
-    transition: padding-top .3s ease-in-out
 
 .newsletter
   background-color: #d1e4f3
+  padding: (10 * $m-xs) $m-sm
 
-  padding: (14 * $m-xs) 0
+  @include media-breakpoint-up(xl)
+    padding: (14 * $m-xs) 0
 
   &__wrapper
     +container
@@ -986,15 +1062,22 @@ body
 
   &__right
     flex: 1
-    min-width: 350px
+    min-width: 33 * $m-sm
+    padding-top: $m
+
+    @include media-breakpoint-up(xl)
+      padding-top: 0
 
   &__title
     font:
       family: $font-family-medium
-      size: 2 * $font-size-base
+      size: $font-size-xl
     letter-spacing: 1px
     padding-bottom: $m
     white-space: nowrap
+
+    @include media-breakpoint-up(xl)
+      font-size: 2 * $font-size-base
 
   &__info
     display: flex
@@ -1023,7 +1106,7 @@ body
     display: flex
     flex-direction: column
 
-    .btn-black:hover
+    .btn-action:hover
       &:hover
         transform: none
 
@@ -1033,31 +1116,56 @@ body
 
   &__container
     display: flex
+    flex-direction: column
     flex-wrap: wrap
     justify-content: space-between
-    padding: (4 * $m) 0
+    padding: (3 * $m) 0 $m
+
+    @include media-breakpoint-up(md)
+      flex-direction: row
+
+    @include media-breakpoint-up(xl)
+      padding: (4 * $m) 0
 
   &__bottom-container
     display: flex
     justify-content: space-between
+    padding: 0 $m
+
+    @include media-breakpoint-up(xl)
+      padding: 0 $m 0 0
 
   &__left
     display: flex
     flex: 1
     justify-content: space-between
+    padding: 0 $m
+
+    @include media-breakpoint-up(xl)
+      padding: $m-sm
 
   &__right
     flex: 1
     justify-content: flex-end
+    padding: (2 * $m) $m $m
     text-align: right
+
+    @include media-breakpoint-up(md)
+      padding-top: 0
+
+    @include media-breakpoint-up(xl)
+      padding-right: $m-sm
 
   &__left-column
     display: flex
     flex-direction: column
-    padding-right: 2 * $m
+    padding-right: 0
+
+    @include media-breakpoint-up(sm)
+      padding-right: 2 * $m
 
   &__bottom
-    border-top: 1px solid $color-gray
+    border-top: $page-border
     display: flex
     justify-content: space-between
     padding: (6 * $m-xs) 0
@@ -1083,35 +1191,65 @@ body
     display: flex
     flex-direction: column
     font-size: $font-size-xl
-    padding-bottom: 2 * $m
-    padding-left: 7 * $m-xs
+    padding: 0
     white-space: nowrap
+
+    @include media-breakpoint-up(xl)
+      padding-bottom: 2 * $m
+      padding-left: 7 * $m-xs
 
   &__contact
     display: flex
     flex-direction: column
+    padding-top: 2 * $m
+
+    @include media-breakpoint-up(xl)
+      padding-top: 0
 
     span
       padding-bottom: 3 * $m-xs
 
   &__info
-    color: #989898
+    color: $color-font-footer
     font:
       family: $font-family-light
       size: $font-size-xs
+    display: flex
+    line-height: $m
+    padding-right: $m
 
   &__social
     display: flex
+    flex-direction: column
+
+    @include media-breakpoint-up(sm)
+      flex-direction: row
+
+    @include media-breakpoint-up(xl)
+      flex: 0
+      flex-direction: row
 
   &__social-title
     font:
       family: $font-family-medium
       size: $font-size-sm
     line-height: $m
-    padding-right: 3 * $m-xs
+    padding-right: $m
+    white-space: nowrap
 
-  &__social-icons a
-    color: #bdc0bd
+  &__social-icons
+    padding-top: $m
+    white-space: nowrap
+
+    a
+      color: $color-social
+      padding-right: $m-sm
+
+      &:last-child
+        padding-right: 0
+
+    @include media-breakpoint-up(sm)
+      padding-top: 0
 
 .sale
   background-color: $color-yellow-light
@@ -1132,16 +1270,19 @@ body
   display: none
 
 .degree
+  height: (13 * $m-xs)
   position: absolute
   width: (13 * $m-xs)
-  height: (13 * $m-xs)
 
   &__container
+    height: (13 * $m-xs)
     position: absolute
-    right: 4 * $m
+    right: -$m-sm
     top: 20%
     width: (13 * $m-xs)
-    height: (13 * $m-xs)
+
+    @include media-breakpoint-up(xl)
+      right: 4 * $m
 
     &:hover
       .degree-off
@@ -1158,12 +1299,12 @@ body
   transform-origin: left center
   width: 50%
 
-.degree:hover .halfclip
+.degree__container:hover .halfclip
   animation: cliprotate 1.5s infinite
 
 .halfcircle
-  border-left-color: $color-yellow-light
   border: solid (2 * $m-xs) transparent
+  border-left-color: $color-yellow-light
   border-radius: 50%
   border-top-color: $color-yellow-light
   box-sizing: border-box
@@ -1175,7 +1316,7 @@ body
   transform: rotate(-45deg)
   width: 200%
 
-.degree:hover .clipped
+.degree__container:hover .clipped
   animation: rotate .75s linear infinite
 
 .fixed
@@ -1183,6 +1324,6 @@ body
   transform: rotate(135deg)
   width: 100%
 
-.degree:hover .fixed
+.degree__container:hover .fixed
   animation: showfixed 1.5s infinite
   opacity: 1

@@ -16,7 +16,6 @@
               <span></span>
               <span></span>
               <span></span>
-              <span></span>
             </div>
           </label>
           <a href="#" class="header__logo">
@@ -25,11 +24,11 @@
         </div>
         <nav class="header__navigation">
           <span class="header__menu-item">
-            <a href="#">Collection</a>
-            <ul>
-              <li><a href="#">Collection black</a></li>
-              <li><a href="#">Collection brown</a></li>
-              <li><a href="#">Collection white</a></li>
+            <a class="header__menu-title" href="#">Collection</a>
+            <ul class="header__submenu">
+              <li class="header__submenu-item"><a class="header__submenu-link" href="#">Collection black</a></li>
+              <li class="header__submenu-item"><a class="header__submenu-link" href="#">Collection brown</a></li>
+              <li class="header__submenu-item"><a class="header__submenu-link" href="#">Collection white</a></li>
             </ul>
           </span>
 
@@ -39,8 +38,8 @@
         </nav>
         <div class="header__right">
           <div class="header__search">
-            <form class=" header__icon inputbox">
-              <input required="required">
+            <form class=" header__icon header__inputbox">
+              <input class="header__input" required="required">
               <button class="header__search-delete" type="reset"></button>
             </form>
           </div>
@@ -114,10 +113,10 @@
                     Deray
                   </div>
                   <div class="item__author">
-                    by Pascal Mourgue
+                    by Rob Brown
                   </div>
                   <div class="item__price">
-                    <span class="item__price-new">$1,499</span><span class="item__price-old">&nbsp $2,310 &nbsp</span>
+                    <span class="item__price-new">$1,799</span><span class="item__price-old">&nbsp $3,100 &nbsp</span>
                   </div>
                 </div>
 
@@ -126,17 +125,17 @@
                     Hiker
                   </div>
                   <div class="item__author">
-                    by Pascal Mourgue
+                    by Sean Booth
                   </div>
                   <div class="item__price">
-                    <span class="item__price-new">$1,499</span><span class="item__price-old">&nbsp $2,310 &nbsp</span>
+                    <span class="item__price-new">$2,199</span><span class="item__price-old">&nbsp $4,510 &nbsp</span>
                   </div>
                 </div>
 
               </div>
               <div class="item__actions">
-                <a class="btn btn-white" href="#">Discover</a>
-                <a href="#" class="btn btn-black">add to cart</a>
+                <a class="btn btn-info" href="#">Discover</a>
+                <a href="#" class="btn btn-action">add to cart</a>
               </div>
             </div>
           </div>
@@ -252,22 +251,25 @@
           <div class="sale">
             sale
           </div>
-          <div class="collection__image collection__image--tables">
+          <div class="collection__container-hidden">
+            <div class="collection__image collection__image--tables"></div>
+            <div class="collection__item-title">
+              Tables
+            </div>
+            <a class="collection__button-discover" href="">Discover</a>
           </div>
-          <div class="collection__item-title">
-            Tables
-          </div>
-          <a class="collection__button-discover" href="">Discover</a>
         </div>
       </div>
       <div class="collection__item">
         <div class="collection__item-wrapper">
-          <div class="collection__image collection__image--lamps">
+          <div class="collection__container-hidden">
+            <div class="collection__image collection__image--lamps">
+            </div>
+            <div class="collection__item-title">
+              Lamps
+            </div>
+            <a class="collection__button-discover" href="">Discover</a>
           </div>
-          <div class="collection__item-title">
-            Lamps
-          </div>
-          <a class="collection__button-discover" href="">Discover</a>
         </div>
       </div>
       <div class="collection__item">
@@ -275,22 +277,25 @@
           <div class="sale">
             sale
           </div>
-          <div class="collection__image collection__image--chairs">
+          <div class="collection__container-hidden">
+            <div class="collection__image collection__image--chairs"></div>
+            <div class="collection__item-title">
+              Chairs
+            </div>
+            <a class="collection__button-discover" href="">Discover</a>
           </div>
-          <div class="collection__item-title">
-            Chairs
-          </div>
-          <a class="collection__button-discover" href="">Discover</a>
         </div>
       </div>
       <div class="collection__item">
         <div class="collection__item-wrapper">
-          <div class="collection__image collection__image--sofas">
+          <div class="collection__container-hidden">
+            <div class="collection__image collection__image--sofas">
+            </div>
+            <div class="collection__item-title">
+              Sofas
+            </div>
+            <a class="collection__button-discover" href="">Discover</a>
           </div>
-          <div class="collection__item-title">
-            Sofas
-          </div>
-          <a class="collection__button-discover" href="">Discover</a>
         </div>
       </div>
     </section>
@@ -308,7 +313,7 @@
         <div class="newsletter__right">
           <form class="newsletter__form">
             <input type=text class="newsletter__input" placeholder="Your email">
-            <a href="#" class="btn btn-black">subscribe</a>
+            <a href="#" class="btn btn-action">subscribe</a>
           </form>
         </div>
       </div>
