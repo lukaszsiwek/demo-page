@@ -37,6 +37,7 @@
           <a class="header__menu-item" href="#">Blog</a>
         </nav>
         <div class="header__right">
+          <input class="hidden" id="navbar-cart" type="checkbox" />
           <div class="header__search">
             <form class=" header__icon header__inputbox">
               <input class="header__input" required="required">
@@ -48,9 +49,47 @@
               <span class="header__text">My Account</span>
             </div>
           </div>
-          <div class="header__bag">
+          <label for="navbar-cart" class="header__bag">
             <div class="header__icon icon--bag">
               <span class="header__text">Cart</span>
+            </div>
+          </label>
+          <div class="cart">
+            <div class="cart__wrapper">
+              <div class="cart__item-container">
+                <ul>
+                  <li class="cart__item">
+                    <span class="cart__remove-item">×</span>
+                    <div class="cart__image-container">
+                      <img class="cart__item-image" src="../../assets/images/cofee-table.png">
+                    </div>
+                    <div class="cart__item-summary">
+                      <h4 class="cart__with-subhead">Ashera</h4>
+                      <div class="cart__by-name">
+                        by Noemie Rognon
+                      </div>
+                      <div class="cart__item-total">
+                        <div class="cart__item-quantity">
+                          <label class="label">
+                            <span>QTY &nbsp;</span>
+                            <span>2</span>
+                          </label>
+                        </div>
+                        <h4 class="item-price">@ $798.00</h4>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div class="cart-footer__wrapper">
+                <div class="cart__cart-footer">
+                  <h5 class="label">Cart Total</h5>
+                  <h4 class="cart-total">$444.02</h4>
+                </div>
+                <div class="cart__checkout">
+                  <button class="btn btn-primary">Checkout</button>
+                </div>
+              </div>
             </div>
           </div>
         </div>

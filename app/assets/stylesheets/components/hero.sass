@@ -74,6 +74,10 @@ body
   color: $color-black
   font-family: $font-family-base
 
+ul
+  margin: 0
+  padding: 0
+
 .hidden
   display: none
 
@@ -369,10 +373,12 @@ body
     align:
       items: center
       self: stretch
+    background-color: $brand-primary
     border-left: $page-border
     display: flex
     order: 1
     padding: 0 (6 * $m-xs)
+    z-index: $z-middle
 
   &__search
     height: 15 * $m-xs
@@ -638,7 +644,7 @@ body
 .btn
   display: flex
 
-.btn-info, .btn-action // info, action
+.btn-info, .btn-action
   &:hover
     background-color: $color-yellow-light
     color: $color-white
@@ -1327,3 +1333,116 @@ body
 .degree__container:hover .fixed
   animation: showfixed 1.5s infinite
   opacity: 1
+
+.cart
+  +animate(transform)
+  background-color: $item-background
+  box-shadow: 0 0 13px rgba(45, 50, 55, 0.5)
+  line-height: 1.4
+  max-height: calc(100vh - 150px)
+  max-width: 480px
+  min-width: 320px
+  overflow-y: auto
+  position: absolute
+  right: 0
+  top: 15 * $m-xs
+  transform: translateY(-110%)
+  z-index: $z-low
+
+  &__item-container
+    overflow: auto
+
+  &__item
+    background-color: $item-background
+    border-bottom: $page-border
+    display: flex
+    padding: $m-xs (2 * $m-xs) $m-xs (2 * $m-xs)
+    position: relative
+
+  &__remove-item
+    color: $color-gray-dark
+    cursor: pointer
+    font-size: $font-size-xlg
+    position: absolute
+    right: (2 * $m-xs)
+    top: 0
+    z-index: $z-low
+
+    &:hover
+      color: $color-yellow
+
+  &__image-container
+    margin-right: $m-xs
+    width: 115px
+
+  &__image-container
+    align-items: center
+    display: flex
+
+  &__item-image
+    width: 100%
+
+  &__item-summary
+    flex: 1
+    font-size: $font-size-sm
+    padding: $m-xs 0
+    text-align: left
+
+  &__with-subhead
+    font-size: $font-size-md
+    margin: (2 * $m-xs) 0 0
+
+  &__by-name
+    font:
+      family: $font-family-light
+      size: $font-size-xs
+
+  &__item-total
+    align-items: center
+    display: flex
+    justify-content: space-between
+    padding-top: $m-xs
+
+  &__item-quantity
+    background-color: $color-white
+    border: $page-border
+    border-radius: $m-xs
+    overflow: hidden
+    padding: $m-xs (2 * $m-xs)
+
+  &__cart-footer
+    align-items: center
+    background-color: $color-white
+    display: flex
+    justify-content: space-between
+    padding: (2 * $m-xs)
+    text-align: left
+
+    .label
+      margin: 0
+      text-transform: uppercase
+      vertical-align: middle
+
+  &__checkout
+    border: none
+    padding: $m-xs
+
+    .btn
+      background-color: $color-black
+      color: $color-white
+      display: inline-block
+      font-size: $font-size-sm
+      letter-spacing: 1px
+      padding: (2 * $m-xs) (2 * $m-xs)
+      text:
+        align: center
+        decoration: none
+        transform: uppercase
+      width: 100%
+
+#navbar-cart:checked ~
+  .header__bag
+    color: $color-yellow
+
+  .cart
+    transform: translateY(0)
