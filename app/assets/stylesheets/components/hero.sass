@@ -93,7 +93,7 @@ ul
     align-items: center
     border-bottom: $page-border
     display: flex
-    height: $header-height
+    height: 11 * $m-xs
     position: absolute
     right: 0
     top: 0
@@ -101,12 +101,16 @@ ul
     white-space: nowrap
     width: 100%
     will-change: opacity
-    z-index: $z-low
+    z-index: $z-middle
+
+    @include media-breakpoint-up(lg)
+      height: $header-height
 
   &__content
     +row
     display: flex
     flex: 1
+    will-change: transform
 
   &__left, &__right
     flex: 1
@@ -114,6 +118,7 @@ ul
       top: $header-height
       left: 0
       right: 0
+    will-change: transform
 
     @include media-breakpoint-up(md)
       padding:
@@ -142,10 +147,10 @@ ul
     background-color: $brand-primary
     display: flex
     justify-content: center
-    margin-top: 30 * $m-xs
+    margin-top: 11 * $m-xs
     order: 1
 
-    @include media-breakpoint-up(sm)
+    @include media-breakpoint-up(lg)
       margin-top: 15 * $m-xs
 
     @include media-breakpoint-up(xl)
@@ -199,7 +204,7 @@ ul
     transition-duration: .5s
     width: 0
     will-change: opacity
-    z-index: $z-low
+    z-index: $z-higher
 
     @include media-breakpoint-up(xl)
       min-height: 100vh
@@ -233,7 +238,9 @@ ul
     position: absolute
     right: 0
     top: 0
-    z-index: $z-low
+
+    &:hover
+      color: $color-yellow
 
   &__slide-changer
     bottom: 80%
@@ -273,7 +280,13 @@ ul
 
 .header
   &__left, &__right, &__navigation
+    background-color: $brand-secondary
     flex: 1
+    position: relative
+    z-index: $z-middle
+
+    @include media-breakpoint-up(xl)
+      background-color: transparent
 
   &__navigation
     +hidden-lg
@@ -335,19 +348,26 @@ ul
     color: $color-black
     font:
       family: $font-family-open
-      size: $font-size-xlg
+      size: $font-size-lg
       weight: $font-weight-bold
-    margin-left: (6 * $m-xs)
+    margin-left: (2 * $m-xs)
     position: relative
+
+    @include media-breakpoint-up(lg)
+      font-size: $font-size-xlg
+      margin-left: (6 * $m-xs)
 
     &:after
       background-color: $color-yellow-light
-      bottom: $m-xs
+      bottom: 4px
       content: ''
       height: 6px
       position: absolute
       right: -8px
       width: 6px
+
+      @include media-breakpoint-up(lg)
+        bottom: $m-xs
 
   &__right
     align:
@@ -366,48 +386,52 @@ ul
     display: flex
 
   &__text
+    display: none
     font-size: $font-size-xs
     padding-left: 2 * $m-xs
+
+    @include media-breakpoint-up(lg)
+      display: block
 
   &__search, &__user, &__bag
     align:
       items: center
       self: stretch
-    background-color: $brand-primary
+    background-color: $brand-secondary
     border-left: $page-border
     display: flex
     order: 1
-    padding: 0 (6 * $m-xs)
+    padding: 0 (3 * $m-xs)
     z-index: $z-middle
 
-  &__search
-    height: 15 * $m-xs
-    margin-top: 15 * $m-xs
-    order: 3
-    position: absolute
+    &:hover
+      color: $color-yellow
+      cursor: pointer
 
-    @include media-breakpoint-up(sm)
-      height: auto
-      margin-top: 0
-      order: 1
-      position: initial
+    @include media-breakpoint-up(xl)
+      background-color: $brand-primary
 
-  &__bag
-    order: 1
+    @include media-breakpoint-up(lg)
+      padding: 0 (6 * $m-xs)
+
+  &__search:hover
+    input, button
+      color: $color-yellow
 
   &__user
     +hidden-lg
 
-  &__menu
-    +animate(all)
+  &__menu-container
+    align:
+      items: center
+      self: stretch
+    border-right: $page-border
     cursor: pointer
-    height: 3 * $m-xs
-    margin: 0 (6 * $m-xs)
-    position: relative
-    width: 5 * $m-xs
+    display: flex
+    will-change: opacity
 
     &:hover
-      span
+      .header__menu-line
         background-color: $color-yellow
 
         &:first-child
@@ -416,35 +440,38 @@ ul
         &:last-child
           margin-left: 50%
 
-    span
-      background-color: $color-black
-      border-radius: 3px
-      display: block
-      height: 2px
-      opacity: 1
-      position: absolute
-      transform: rotate(0deg)
-      transition: $transition-duration $transition-function
-      width: 100%
+  &__menu
+    +animate(all)
+    height: 3 * $m-xs
+    margin: 0 (3 * $m-xs)
+    position: relative
+    width: 5 * $m-xs
 
-      &:nth-child(1)
-        right: 0
-        top: 0
-        width: 50%
+    @include media-breakpoint-up(lg)
+      margin: 0 (6 * $m-xs)
 
-      &:nth-child(2)
-        top: 6px
+  &__menu-line
+    background-color: $color-black
+    border-radius: 3px
+    display: block
+    height: 2px
+    opacity: 1
+    position: absolute
+    transform: rotate(0deg)
+    transition: $transition-duration $transition-function
+    width: 100%
 
-      &:nth-child(3)
-        top: 12px
-        width: 50%
+    &:nth-child(1)
+      right: 0
+      top: 0
+      width: 50%
 
-    &-container
-      align:
-        items: center
-        self: stretch
-      border-right: $page-border
-      display: flex
+    &:nth-child(2)
+      top: 6px
+
+    &:nth-child(3)
+      top: 12px
+      width: 50%
 
   &__inputbox
     left: 8px
@@ -477,7 +504,10 @@ ul
       outline: 0
       padding: 3 * $m-xs
       transition-delay: 0s, 0s, 0s, $speed/2
-      width: $input-width
+      width: 7 * $m
+
+      @include media-breakpoint-up(sm)
+        width: $input-width
 
       + .header__search-delete
         left: -$m
@@ -537,12 +567,15 @@ ul
   &__name
     font:
       family: $font-family-medium
-      size: $font-size-xxl + $m-xs
+      size: 3 * $font-size-lg
       weight: $font-weight-black
     letter-spacing: $font-size-xs
     text:
       align: right
       transform: uppercase
+
+    @include media-breakpoint-up(md)
+      font-size: $font-size-xxl + $m-xs
 
   &__info
     margin: auto
@@ -583,6 +616,10 @@ ul
   &__actions
     align-items: center
     display: flex
+    justify-content: center
+
+    @include media-breakpoint-up(xl)
+      justify-content: flex-start
 
   &__price
     padding: (2 * $m) 0 (3 * $m)
@@ -636,6 +673,9 @@ ul
   .hero__header, .subtitle__hero
     width: 100%
 
+  .hero__header .header__menu span
+    background-color: $color-yellow
+
 @include media-breakpoint-up(xl)
   #navbar-menu:checked ~
     .hero__header, .subtitle__hero
@@ -664,11 +704,14 @@ ul
   color: $color-white
   font-size: $font-size-xs
   letter-spacing: 2px
-  padding: (3 * $m-sm) (10 * $m-xs)
+  padding: (2 * $m-sm) (2 * $m)
   text-transform: uppercase
 
   &:hover
     color: $color-black
+
+  @include media-breakpoint-up(xl)
+    padding: (3 * $m-sm) (10 * $m-xs)
 
 .products
   border-top: $page-border
@@ -778,15 +821,15 @@ ul
   z-index: $z-low
 
   &__hero
+    margin-top: 5 * $m
     position: absolute
-    margin-top: 19 * $m-sm
 
-    @include media-breakpoint-up(sm)
-      margin-top: 5 * $m-sm
-      top: 8%
+    @include media-breakpoint-up(md)
+      margin-top: 6 * $m
 
     @include media-breakpoint-up(xl)
       margin-top: $header-height
+      top: 8%
 
   &__posts
     margin-top: 3 * $m
@@ -1139,7 +1182,7 @@ ul
     padding: 0 $m
 
     @include media-breakpoint-up(xl)
-      padding: 0 $m 0 0
+      padding: 0 $m-sm 0 0
 
   &__left
     display: flex
@@ -1339,9 +1382,10 @@ ul
   background-color: $item-background
   box-shadow: 0 0 13px rgba(45, 50, 55, 0.5)
   line-height: 1.4
-  max-height: calc(100vh - 150px)
-  max-width: 480px
-  min-width: 320px
+  max:
+    height: calc(100vh - 150px)
+    width: 24 * $m
+  min-width: 16 * $m
   overflow-y: auto
   position: absolute
   right: 0
@@ -1373,7 +1417,7 @@ ul
 
   &__image-container
     margin-right: $m-xs
-    width: 115px
+    width: 23 * $m-xs
 
   &__image-container
     align-items: center
@@ -1440,8 +1484,12 @@ ul
         transform: uppercase
       width: 100%
 
+      &:hover
+        background-color: $color-yellow
+        cursor: pointer
+
 #navbar-cart:checked ~
-  .header__bag
+  .header__right .header__bag
     color: $color-yellow
 
   .cart

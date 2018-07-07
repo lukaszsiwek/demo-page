@@ -13,9 +13,9 @@
         <div class="header__left">
           <label for="navbar-menu" class="header__menu-container">
             <div class="header__menu">
-              <span></span>
-              <span></span>
-              <span></span>
+              <span class="header__menu-line"></span>
+              <span class="header__menu-line"></span>
+              <span class="header__menu-line"></span>
             </div>
           </label>
           <a href="#" class="header__logo">
@@ -36,8 +36,9 @@
           <a class="header__menu-item" href="#">About Us</a>
           <a class="header__menu-item" href="#">Blog</a>
         </nav>
+        <input class="hidden" id="navbar-cart" type="checkbox" />
         <div class="header__right">
-          <input class="hidden" id="navbar-cart" type="checkbox" />
+
           <div class="header__search">
             <form class=" header__icon header__inputbox">
               <input class="header__input" required="required">
@@ -54,41 +55,88 @@
               <span class="header__text">Cart</span>
             </div>
           </label>
-          <div class="cart">
-            <div class="cart__wrapper">
-              <div class="cart__item-container">
-                <ul>
-                  <li class="cart__item">
-                    <span class="cart__remove-item">×</span>
-                    <div class="cart__image-container">
-                      <img class="cart__item-image" src="../../assets/images/cofee-table.png">
+
+
+
+        </div>
+
+        <div class="cart">
+          <div class="cart__wrapper">
+            <div class="cart__item-container">
+              <div class="cart__item">
+                <span class="cart__remove-item">×</span>
+                <div class="cart__image-container">
+                  <img class="cart__item-image" src="../../assets/images/cofee-table.png">
+                </div>
+                <div class="cart__item-summary">
+                  <h4 class="cart__with-subhead">Ashera</h4>
+                  <div class="cart__by-name">
+                    by Noemie Rognon
+                  </div>
+                  <div class="cart__item-total">
+                    <div class="cart__item-quantity">
+                      <label class="label">
+                        <span>QTY &nbsp;</span>
+                        <span>2</span>
+                      </label>
                     </div>
-                    <div class="cart__item-summary">
-                      <h4 class="cart__with-subhead">Ashera</h4>
-                      <div class="cart__by-name">
-                        by Noemie Rognon
-                      </div>
-                      <div class="cart__item-total">
-                        <div class="cart__item-quantity">
-                          <label class="label">
-                            <span>QTY &nbsp;</span>
-                            <span>2</span>
-                          </label>
-                        </div>
-                        <h4 class="item-price">@ $798.00</h4>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
+                    <h4 class="item-price">@ $798</h4>
+                  </div>
+                </div>
               </div>
-              <div class="cart-footer__wrapper">
-                <div class="cart__cart-footer">
-                  <h5 class="label">Cart Total</h5>
-                  <h4 class="cart-total">$444.02</h4>
+
+              <div class="cart__item">
+                <span class="cart__remove-item">×</span>
+                <div class="cart__image-container">
+                  <img class="cart__item-image" src="../../assets/images/blue-chair.png">
                 </div>
-                <div class="cart__checkout">
-                  <button class="btn btn-primary">Checkout</button>
+                <div class="cart__item-summary">
+                  <h4 class="cart__with-subhead">Manarola</h4>
+                  <div class="cart__by-name">
+                    by Philippe Nigro
+                  </div>
+                  <div class="cart__item-total">
+                    <div class="cart__item-quantity">
+                      <label class="label">
+                        <span>QTY &nbsp;</span>
+                        <span>3</span>
+                      </label>
+                    </div>
+                    <h4 class="item-price">@ $3,597</h4>
+                  </div>
                 </div>
+              </div>
+
+              <div class="cart__item">
+                <span class="cart__remove-item">×</span>
+                <div class="cart__image-container">
+                  <img class="cart__item-image" src="../../assets/images/seat.png">
+                </div>
+                <div class="cart__item-summary">
+                  <h4 class="cart__with-subhead">Renaissance</h4>
+                  <div class="cart__by-name">
+                    by Veronica Vildgrubber
+                  </div>
+                  <div class="cart__item-total">
+                    <div class="cart__item-quantity">
+                      <label class="label">
+                        <span>QTY &nbsp;</span>
+                        <span>1</span>
+                      </label>
+                    </div>
+                    <h4 class="item-price">@ $399</h4>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="cart-footer__wrapper">
+              <div class="cart__cart-footer">
+                <h5 class="label">Cart Total</h5>
+                <h4 class="cart-total">$4794</h4>
+              </div>
+              <div class="cart__checkout">
+                <button class="btn btn-primary">Checkout</button>
               </div>
             </div>
           </div>
