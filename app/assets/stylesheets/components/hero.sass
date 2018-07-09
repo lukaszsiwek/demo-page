@@ -185,7 +185,7 @@ ul
       width: 100%
 
       @include media-breakpoint-up(md)
-        background-size: initial
+        background-size: cover
 
       @include media-breakpoint-up(xxl)
         background-image: url("../../assets/images/sprite.png")
@@ -208,8 +208,6 @@ ul
 
     @include media-breakpoint-up(xl)
       min-height: 100vh
-      position: relative
-
 
   &__navbar-left-container
     display: flex
@@ -534,6 +532,7 @@ ul
     outline: none
     position: relative
     transition-delay: $speed * 2
+    top: 0
     width: $m
 
     &:focus
@@ -675,11 +674,6 @@ ul
 
   .hero__header .header__menu span
     background-color: $color-yellow
-
-@include media-breakpoint-up(xl)
-  #navbar-menu:checked ~
-    .hero__header, .subtitle__hero
-      width: calc(100% - 280px)
 
 .btn
   display: flex
@@ -1345,6 +1339,7 @@ ul
   overflow: hidden
   position: absolute
   right: 0
+  top: 0
   transform-origin: left center
   width: 50%
 
@@ -1353,13 +1348,15 @@ ul
 
 .halfcircle
   border: solid (2 * $m-xs) transparent
-  border-left-color: $color-yellow-light
-  border-radius: 50%
-  border-top-color: $color-yellow-light
+  border:
+    left-color: $color-yellow-light
+    radius: 50%
+    top-color: $color-yellow-light
   box-sizing: border-box
   height: 100%
   position: absolute
   right: 0
+  top: 0
 
 .clipped
   transform: rotate(-45deg)
@@ -1389,9 +1386,12 @@ ul
   overflow-y: auto
   position: absolute
   right: 0
-  top: 15 * $m-xs
+  top: 11 * $m-xs
   transform: translateY(-110%)
   z-index: $z-low
+
+  @include media-breakpoint-up(lg)
+    top: 15 * $m-xs
 
   &__item-container
     overflow: auto
@@ -1494,3 +1494,41 @@ ul
 
   .cart
     transform: translateY(0)
+
+//----- Safari - fixes ----------------------------------------------------------------------------------------------------------
+_::-webkit-full-page-media, _:future, :root
+  .hero__slide-changer
+    display: none
+
+  .item__info-slides-item
+    left: 0
+
+  .products
+    height: 1500px
+
+    @include media-breakpoint-up(md)
+      height: 2200px
+
+    @include media-breakpoint-up(xl)
+      height: auto
+
+  .newsletter__left, .newsletter__right
+    flex: auto
+
+//----- ie - fixes --------------------------------------------------------------------------------------------------------------
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none)
+
+  .products
+    height: 1500px
+
+    @include media-breakpoint-up(md)
+      height: 2200px
+
+    @include media-breakpoint-up(xl)
+      height: auto
+
+  .newsletter__left,
+  .newsletter__right,
+  .footer__left,
+  .footer__right
+    flex: auto

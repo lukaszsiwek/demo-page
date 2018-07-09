@@ -44,8 +44,11 @@
   src: url("shared/fonts/OpenSans-SemiBold.woff2") format("woff2"), url("shared/fonts/OpenSans-SemiBold.woff") format("woff");
   font-style: normal; }
 @font-face {
-  font-family: "icons";
-  src: url("shared/fonts/icons.woff2") format("woff2"), url("shared/fonts/icons.woff") format("woff");
+  font-family: "stile";
+  src: url("shared/fonts/stile.eot") format("embedded-opentype");
+  src: url("shared/fonts/stile.svg") format("svg");
+  src: url("shared/fonts/stile.woff2") format("woff2"), url("shared/fonts/stile.woff") format("woff");
+  src: url("shared/fonts/stile.ttf") format("truetype");
   font-weight: normal;
   font-style: normal; }
 [class*=icon--] {
@@ -55,7 +58,7 @@
     text-decoration: none; }
   [class*=icon--]:before {
     display: block;
-    font-family: "icons";
+    font-family: "stile" !important;
     font-size: 16px;
     font-style: normal;
     font-variant: normal;
@@ -408,7 +411,7 @@ ul {
       width: 100%; }
       @media (min-width: 768px) {
         .hero__image .hero__furniture-image {
-          background-size: initial; } }
+          background-size: cover; } }
       @media (min-width: 1400px) {
         .hero__image .hero__furniture-image {
           background-image: url("../../assets/images/sprite.png"); } }
@@ -438,8 +441,7 @@ ul {
     z-index: 400; }
     @media (min-width: 1200px) {
       .hero__navbar-left {
-        min-height: 100vh;
-        position: relative; } }
+        min-height: 100vh; } }
   .hero__navbar-left-container {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -787,6 +789,7 @@ ul {
   position: relative;
   -webkit-transition-delay: 0.6s;
           transition-delay: 0.6s;
+  top: 0;
   width: 20px; }
   .header__search-delete:focus {
     outline: none; }
@@ -951,9 +954,6 @@ ul {
 #navbar-menu:checked ~ .hero__header .header__menu span {
   background-color: #daaa17; }
 
-@media (min-width: 1200px) {
-  #navbar-menu:checked ~ .hero__header, #navbar-menu:checked ~ .subtitle__hero {
-    width: calc(100% - 280px); } }
 .btn {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1771,6 +1771,7 @@ ul {
   overflow: hidden;
   position: absolute;
   right: 0;
+  top: 0;
   -webkit-transform-origin: left center;
           transform-origin: left center;
   width: 50%; }
@@ -1788,7 +1789,8 @@ ul {
           box-sizing: border-box;
   height: 100%;
   position: absolute;
-  right: 0; }
+  right: 0;
+  top: 0; }
 
 .clipped {
   -webkit-transform: rotate(-45deg);
@@ -1829,10 +1831,13 @@ ul {
   overflow-y: auto;
   position: absolute;
   right: 0;
-  top: 75px;
+  top: 55px;
   -webkit-transform: translateY(-110%);
           transform: translateY(-110%);
   z-index: 100; }
+  @media (min-width: 992px) {
+    .cart {
+      top: 75px; } }
   .cart__item-container {
     overflow: auto; }
   .cart__item {
@@ -1935,3 +1940,38 @@ ul {
 #navbar-cart:checked ~ .cart {
   -webkit-transform: translateY(0);
           transform: translateY(0); }
+
+_::-webkit-full-page-media .hero__slide-changer, _:future .hero__slide-changer, :root .hero__slide-changer {
+  display: none; }
+_::-webkit-full-page-media .item__info-slides-item, _:future .item__info-slides-item, :root .item__info-slides-item {
+  left: 0; }
+_::-webkit-full-page-media .products, _:future .products, :root .products {
+  height: 1500px; }
+  @media (min-width: 768px) {
+    _::-webkit-full-page-media .products, _:future .products, :root .products {
+      height: 2200px; } }
+  @media (min-width: 1200px) {
+    _::-webkit-full-page-media .products, _:future .products, :root .products {
+      height: auto; } }
+_::-webkit-full-page-media .newsletter__left, _::-webkit-full-page-media .newsletter__right, _:future .newsletter__left, _:future .newsletter__right, :root .newsletter__left, :root .newsletter__right {
+  -webkit-box-flex: 1;
+          flex: auto; }
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  .products {
+    height: 1500px; } }
+  @media screen and (-ms-high-contrast: active) and (min-width: 768px), (-ms-high-contrast: none) and (min-width: 768px) {
+    .products {
+      height: 2200px; } }
+  @media screen and (-ms-high-contrast: active) and (min-width: 1200px), (-ms-high-contrast: none) and (min-width: 1200px) {
+    .products {
+      height: auto; } }
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  .newsletter__left,
+  .newsletter__right,
+  .footer__left,
+  .footer__right {
+    -webkit-box-flex: 1;
+        -ms-flex: auto;
+            flex: auto; } }
