@@ -291,7 +291,7 @@ ul
     display: flex
     justify-content: center
 
-  &__menu-title:visited, &__menu-item:visited
+  &__menu-title
     color: $color-black
 
   &__menu-item
@@ -305,7 +305,6 @@ ul
 
       .header__menu-title + .header__submenu
         opacity: 1
-        top: calc( 50% + $m-xs)
         visibility: visible
 
   &__submenu
@@ -314,7 +313,6 @@ ul
     opacity: 0
     padding: $m-sm 0 0 0
     position: absolute
-    top: calc( 50% + $m)
     transition: all .2s ease
     visibility: hidden
     z-index: $z-high
@@ -532,7 +530,6 @@ ul
     outline: none
     position: relative
     transition-delay: $speed * 2
-    top: 0
     width: $m
 
     &:focus
@@ -547,6 +544,7 @@ ul
       transform: translate(-8px, 50%) rotate(-45deg) scaleY(1)
       transition-duration:  $speed/2,  $speed/2
       transition-delay: $speed * 1.5
+      top: $m-sm
       width: $stroke
       will-change: opacity
 
@@ -1473,6 +1471,7 @@ ul
 
     .btn
       background-color: $color-black
+      border: 0
       color: $color-white
       display: inline-block
       font-size: $font-size-sm
@@ -1517,6 +1516,8 @@ _::-webkit-full-page-media, _:future, :root
 
 //----- ie - fixes --------------------------------------------------------------------------------------------------------------
 @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none)
+  a, span
+    display: inline-block
 
   .products
     height: 1500px
@@ -1527,8 +1528,12 @@ _::-webkit-full-page-media, _:future, :root
     @include media-breakpoint-up(xl)
       height: auto
 
+  .item__info-slides-item
+    left: 0
+
   .newsletter__left,
   .newsletter__right,
   .footer__left,
-  .footer__right
+  .footer__right,
+  .footer__social
     flex: auto
